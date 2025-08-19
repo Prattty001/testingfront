@@ -1,0 +1,38 @@
+{
+  "modified_files": [
+    "src/components/budget/BudgetModal.jsx",
+    "src/components/team/TeamInviteModal.jsx",
+    "src/components/ui/carousel.jsx",
+    "src/components/ui/chart.jsx",
+    "src/components/ui/command.jsx",
+    "src/components/ui/toast.jsx",
+    "src/hooks/use-toast.js",
+    "src/pages/BankIntegration.jsx",
+    "src/pages/SmartSuggestions.jsx"
+  ],
+  "remaining_files_with_interface_or_type": [
+    "src/components/budget/BudgetModal.jsx",
+    "src/components/dashboard/RecentTransactions.jsx",
+    "src/components/team/TeamInviteModal.jsx",
+    "src/components/ui/alert.jsx",
+    "src/components/ui/badge.jsx",
+    "src/components/ui/button.jsx",
+    "src/components/ui/carousel.jsx",
+    "src/components/ui/chart.jsx",
+    "src/components/ui/command.jsx",
+    "src/components/ui/input.jsx",
+    "src/components/ui/label.jsx",
+    "src/components/ui/sheet.jsx",
+    "src/components/ui/sonner.jsx",
+    "src/components/ui/textarea.jsx",
+    "src/components/ui/toast.jsx",
+    "src/components/ui/toggle-group.jsx",
+    "src/components/ui/toggle.jsx",
+    "src/hooks/use-toast.js",
+    "src/lib/utils.js",
+    "src/pages/BankIntegration.jsx",
+    "src/pages/Login.jsx",
+    "src/pages/Signup.jsx",
+    "src/pages/SmartSuggestions.jsx"
+  ]
+}
