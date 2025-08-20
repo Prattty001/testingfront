@@ -20,24 +20,42 @@ import {
   Lock,
   LockKeyhole,
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const confirmPassword = e.target.confirmPassword.value;
+    const name = e.target.name.value.trim();
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value.trim();
+    const confirmPassword = e.target.confirmPassword.value.trim();
 
+    // Empty fields check
+    if (!name || !email || !password || !confirmPassword) {
+      toast({
+        title: "⚠️ Missing fields",
+        description: "Please fill all fields",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
+    // Password match check
     if (password !== confirmPassword) {
-      console.error("Passwords do not match");
+      toast({
+        title: "❌ Password mismatch",
+        description: "Passwords do not match",
+        variant: "destructive",
+      });
       setLoading(false);
       return;
     }
@@ -50,14 +68,26 @@ const Signup = () => {
       });
 
       if (response.ok) {
-        console.log("✅ Account created! Please log in.");
+        toast({
+          title: "✅ Account created",
+          description: "You can now log in",
+          className: "bg-green-600 text-white",
+        });
         navigate("/login"); // ✅ go to login after signup
       } else {
         const err = await response.json();
-        console.error("❌ Signup failed:", err.message || "Something went wrong");
+        toast({
+          title: "❌ Signup failed",
+          description: err.message || "Something went wrong",
+          variant: "destructive",
+        });
       }
     } catch (error) {
-      console.error("❌ Error:", error.message);
+      toast({
+        title: "❌ Error",
+        description: error.message || "Network error",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }

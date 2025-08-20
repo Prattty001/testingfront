@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Eye, EyeOff, CreditCard } from "lucide-react";
+import { toast } from "sonner"; // ✅ Toast import
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,14 +39,39 @@ const Login = () => {
       if (res.ok) {
         // ✅ Save token to localStorage
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
 
-        // ✅ Redirect to dashboard
+        // ✅ Success Toast
+        toast.success("🎉 Login successful!", {
+          style: {
+            background: "#22c55e",
+            color: "white",
+            fontWeight: "600",
+          },
+        });
+
+        // ✅ Redirect after success
         navigate("/dashboard");
       } else {
-        console.error(data.message || "Invalid email or password");
+        // ❌ Error Toast
+        toast.error(data.message || "Invalid email or password", {
+          style: {
+            background: "#ef4444",
+            color: "white",
+            fontWeight: "600",
+          },
+        });
       }
     } catch (err) {
-      console.error("Something went wrong. Please try again.", err);
+      // ❌ Error Toast
+      toast.error("Something went wrong. Please try again.", {
+        style: {
+          background: "#ef4444",
+          color: "white",
+          fontWeight: "600",
+        },
+      });
+      console.error(err);
     } finally {
       setLoading(false);
     }
